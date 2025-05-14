@@ -28,11 +28,13 @@ export default function HeroSection() {
             </Badge>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
-              Hi, I'm <ShinyText>Sahil</ShinyText> – <span className="text-primary">
+              Hi, I'm <ShinyText>Sahil Talaviya &nbsp;&nbsp;&nbsp;<br /> </ShinyText> 
+               {/* <span className="text-primary">
                 <GradientText text="Frontend Developer" />
-              </span> & {" "}
+              </span> & {" "} */}
+              <br />
               <TypewriterText 
-                text="Web Tester" 
+                text="Frontend Developer" 
                 speed={150}
                 delay={1000}
                 className="text-accent"
@@ -74,7 +76,7 @@ export default function HeroSection() {
             
             <div className="flex items-center gap-4 mt-8">
               <a 
-                href="https://github.com" 
+                href="https://github.com/sahiltalaviya99/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="p-3 rounded-full hover:bg-secondary transition-colors"
@@ -83,7 +85,7 @@ export default function HeroSection() {
                 <Github className="h-5 w-5" />
               </a>
               <a 
-                href="https://linkedin.com" 
+                href="https://www.linkedin.com/in/sahil-talaviya-99o9657o18/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="p-3 rounded-full hover:bg-secondary transition-colors"
@@ -100,7 +102,7 @@ export default function HeroSection() {
               <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-gradient-to-br from-primary to-accent p-1 shadow-xl animate-[spin_20s_linear_infinite]">
                 <div className="w-full h-full rounded-full bg-background flex items-center justify-center overflow-hidden animate-[spin_20s_linear_infinite_reverse]">
                   <img 
-                    src="/placeholder.svg" 
+                    src="/placeholder.svg"  // IN PUBLIC FOLDER 
                     alt="Sahil Talaviya" 
                     className="w-full h-full object-cover"
                   />
@@ -109,15 +111,21 @@ export default function HeroSection() {
               
               <div className="absolute -bottom-4 -right-4 bg-card shadow-lg rounded-full p-3 animate-bounce">
                 <div className="bg-primary rounded-full w-16 h-16 flex items-center justify-center text-primary-foreground text-sm font-medium">
-                  <SplitText text="Web Dev" />
+                  <SplitText text="React" />
                 </div>
               </div>
-              
+
+              {/* <div className="absolute -bottom-4 -left-1 bg-card shadow-lg rounded-full p-3 animate-bounce">
+                <div className="bg-primary rounded-full w-16 h-16 flex items-center justify-center text-primary-foreground text-sm font-medium">
+                  <SplitText text="React" />
+                </div>
+              </div> */}
+
               <div className="absolute -top-4 -left-4 bg-card shadow-lg rounded-full p-3 animate-pulse">
                 <div className="bg-accent rounded-full w-16 h-16 flex items-center justify-center text-accent-foreground text-sm font-medium">
-                  <SplitText text="Tester" />
+                  <SplitText text="Devloper" />
                 </div>
-              </div>
+              </div> 
             </div>
           </div>
         </div>
@@ -127,7 +135,7 @@ export default function HeroSection() {
             href="#about" 
             className={cn(
               "p-3 rounded-full bg-primary/10 hover:bg-primary/20 text-primary",
-              "transition-all duration-300 animate-bounce"
+              "transition-all duration-5000 animate-bounce"
             )}
             aria-label="Scroll to About section"
           >

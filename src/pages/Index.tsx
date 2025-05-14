@@ -24,9 +24,8 @@ const Index = () => {
           <SkillsSection />
         </ScrollFloat>
         
-        <ScrollVelocity factor={0.05}>
           <ExperienceSection />
-        </ScrollVelocity>
+        
         
         <ScrollRevealText threshold={0.2} direction="left">
           <ProjectsSection />
