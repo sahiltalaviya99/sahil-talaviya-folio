@@ -1,7 +1,8 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Briefcase, GraduationCap, Calendar } from "lucide-react";
 
 interface TimelineItemProps {
@@ -49,26 +50,52 @@ const experiences: TimelineItemProps[] = [
 ];
 
 export default function ExperienceSection() {
+  const [activeTab, setActiveTab] = useState<string>("all");
+  
+  const filteredExperiences = activeTab === "all" 
+    ? experiences 
+    : experiences.filter(exp => exp.icon === activeTab);
+
   return (
     <section id="experience" className="py-20 bg-secondary/30">
       <div className="container-section">
-        <h2 className="section-title">Experience & Education</h2>
+        <h2 className="section-title mb-12">Experience & Education</h2>
         
-        <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-primary/20 rounded-full hidden md:block"></div>
-          
-          {/* Timeline Items */}
-          <div className="space-y-12">
-            {experiences.map((item, index) => (
-              <TimelineItem 
-                key={index} 
-                {...item} 
-                isEven={index % 2 === 0} 
-              />
-            ))}
+        <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <div className="flex justify-center mb-10">
+            <TabsList className="grid grid-cols-3 w-full max-w-md">
+              <TabsTrigger value="all" className="data-[state=active]:bg-primary data-[state=active]:text-white">
+                All
+              </TabsTrigger>
+              <TabsTrigger value="work" className="data-[state=active]:bg-primary data-[state=active]:text-white">
+                <Briefcase className="mr-2 h-4 w-4" />
+                Work
+              </TabsTrigger>
+              <TabsTrigger value="education" className="data-[state=active]:bg-primary data-[state=active]:text-white">
+                <GraduationCap className="mr-2 h-4 w-4" />
+                Education
+              </TabsTrigger>
+            </TabsList>
           </div>
-        </div>
+          
+          <TabsContent value={activeTab} className="mt-0">
+            <div className="relative">
+              {/* Timeline Line */}
+              <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-primary/20 rounded-full hidden md:block"></div>
+              
+              {/* Timeline Items */}
+              <div className="space-y-12">
+                {filteredExperiences.map((item, index) => (
+                  <TimelineItem 
+                    key={index} 
+                    {...item} 
+                    isEven={index % 2 === 0} 
+                  />
+                ))}
+              </div>
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </section>
   );
@@ -89,14 +116,14 @@ function TimelineItem({ title, company, period, description, skills, icon, isEve
     <div className={`relative md:flex ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
       {/* Timeline Item Content */}
       <div className="md:w-1/2 flex-grow mb-8 md:mb-0 md:px-10">
-        <Card className="shadow-md transform transition-all hover:shadow-lg hover:-translate-y-1">
+        <Card className="shadow-md transform transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-t-4 border-t-primary overflow-hidden">
           <CardHeader className="pb-2">
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-xl font-semibold">{title}</h3>
                 <p className="text-muted-foreground">{company}</p>
               </div>
-              <div className="flex items-center gap-1 text-sm text-muted-foreground">
+              <div className="flex items-center gap-1 text-sm text-muted-foreground bg-secondary px-2 py-1 rounded-full">
                 <Calendar className="h-4 w-4" />
                 <span>{period}</span>
               </div>
@@ -104,11 +131,11 @@ function TimelineItem({ title, company, period, description, skills, icon, isEve
           </CardHeader>
           
           <CardContent>
-            <p className="mb-4">{description}</p>
+            <p className="mb-4 text-muted-foreground">{description}</p>
             
             <div className="flex flex-wrap gap-2">
               {skills.map((skill) => (
-                <Badge key={skill} variant="outline">{skill}</Badge>
+                <Badge key={skill} variant="outline" className="bg-primary/5 hover:bg-primary/10">{skill}</Badge>
               ))}
             </div>
           </CardContent>
@@ -117,7 +144,7 @@ function TimelineItem({ title, company, period, description, skills, icon, isEve
       
       {/* Timeline Center Icon - Only visible on larger screens */}
       <div className="absolute left-0 md:left-1/2 transform -translate-x-1/2 -translate-y-3 hidden md:block">
-        <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white">
+        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white shadow-md z-10">
           {icon === "work" ? (
             <Briefcase className="h-5 w-5" />
           ) : (
@@ -128,7 +155,7 @@ function TimelineItem({ title, company, period, description, skills, icon, isEve
       
       {/* Small screen icon - Only visible on mobile */}
       <div className="absolute left-0 top-0 md:hidden">
-        <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white shadow-md">
           {icon === "work" ? (
             <Briefcase className="h-4 w-4" />
           ) : (
