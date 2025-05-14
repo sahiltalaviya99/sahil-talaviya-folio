@@ -43,49 +43,53 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-secondary/30">
-      <div className="container-section">
+    <section id="contact" className="py-24 bg-secondary/20 relative">
+      {/* Background decoration */}
+      <div className="absolute top-0 left-0 w-1/4 h-1/4 bg-primary/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-accent/5 rounded-full blur-3xl"></div>
+      
+      <div className="container-section relative z-10">
         <h2 className="section-title">Contact Me</h2>
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Contact Information */}
-          <div className="lg:col-span-5 space-y-6">
-            <h3 className="text-2xl font-semibold mb-6">Get In Touch</h3>
-            <p className="text-muted-foreground">
+          <div className="lg:col-span-5 space-y-8">
+            <h3 className="text-2xl font-bold mb-6">Get In Touch</h3>
+            <p className="text-muted-foreground text-lg">
               Feel free to reach out to me for any inquiries, collaboration opportunities, or just to say hello. I'll get back to you as soon as possible.
             </p>
             
-            <div className="space-y-4 mt-8">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-md bg-primary/10 text-primary">
-                  <Mail className="h-5 w-5" />
+            <div className="space-y-6 mt-10">
+              <div className="flex items-start gap-6">
+                <div className="p-4 rounded-md bg-primary/10 text-primary">
+                  <Mail className="h-6 w-6" />
                 </div>
                 <div>
-                  <h4 className="font-medium">Email</h4>
+                  <h4 className="text-lg font-medium">Email</h4>
                   <a href="mailto:sahil@example.com" className="text-muted-foreground hover:text-primary transition-colors">
                     sahil@example.com
                   </a>
                 </div>
               </div>
               
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-md bg-primary/10 text-primary">
-                  <Phone className="h-5 w-5" />
+              <div className="flex items-start gap-6">
+                <div className="p-4 rounded-md bg-primary/10 text-primary">
+                  <Phone className="h-6 w-6" />
                 </div>
                 <div>
-                  <h4 className="font-medium">Phone</h4>
+                  <h4 className="text-lg font-medium">Phone</h4>
                   <a href="tel:+911234567890" className="text-muted-foreground hover:text-primary transition-colors">
                     +91 1234567890
                   </a>
                 </div>
               </div>
               
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-md bg-primary/10 text-primary">
-                  <MapPin className="h-5 w-5" />
+              <div className="flex items-start gap-6">
+                <div className="p-4 rounded-md bg-primary/10 text-primary">
+                  <MapPin className="h-6 w-6" />
                 </div>
                 <div>
-                  <h4 className="font-medium">Location</h4>
+                  <h4 className="text-lg font-medium">Location</h4>
                   <p className="text-muted-foreground">
                     Gujarat, India
                   </p>
@@ -96,10 +100,10 @@ export default function ContactSection() {
           
           {/* Contact Form */}
           <div className="lg:col-span-7">
-            <Card>
-              <CardContent className="p-6">
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Card className="overflow-hidden border-none shadow-lg">
+              <CardContent className="p-8">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="name" className="text-sm font-medium">
                         Your Name
@@ -111,6 +115,7 @@ export default function ContactSection() {
                         required
                         value={formData.name}
                         onChange={handleChange}
+                        className="h-12"
                       />
                     </div>
                     
@@ -126,6 +131,7 @@ export default function ContactSection() {
                         required
                         value={formData.email}
                         onChange={handleChange}
+                        className="h-12"
                       />
                     </div>
                   </div>
@@ -141,6 +147,7 @@ export default function ContactSection() {
                       required
                       value={formData.subject}
                       onChange={handleChange}
+                      className="h-12"
                     />
                   </div>
                   
@@ -153,24 +160,25 @@ export default function ContactSection() {
                       name="message"
                       placeholder="Write your message here..."
                       required
-                      rows={5}
+                      rows={6}
                       value={formData.message}
                       onChange={handleChange}
+                      className="resize-none"
                     />
                   </div>
                   
                   <Button 
                     type="submit" 
-                    className="w-full md:w-auto flex items-center gap-2"
+                    className="w-full md:w-auto px-8 py-6 h-auto text-base rounded-md"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
                       <>Processing...</>
                     ) : (
-                      <>
+                      <div className="flex items-center gap-2">
                         <Send className="h-4 w-4" />
                         Send Message
-                      </>
+                      </div>
                     )}
                   </Button>
                 </form>

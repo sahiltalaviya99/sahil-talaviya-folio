@@ -40,14 +40,17 @@ const skills = {
 const badgeVariants: Record<string, string> = {
   Expert: "bg-primary text-primary-foreground hover:bg-primary/90",
   Advanced: "bg-accent text-accent-foreground hover:bg-accent/90",
-  Intermediate: "bg-secondary text-secondary-foreground hover:bg-secondary/90",
-  Beginner: "bg-muted text-muted-foreground hover:bg-muted/90",
+  Intermediate: "bg-secondary text-secondary-foreground hover:bg-secondary/90 border border-border",
+  Beginner: "bg-muted text-muted-foreground hover:bg-muted/90 border border-border",
 };
 
 export default function SkillsSection() {
   return (
-    <section id="skills" className="py-20">
-      <div className="container-section">
+    <section id="skills" className="py-24 relative">
+      {/* Background decoration */}
+      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-accent/5 rounded-full blur-3xl"></div>
+      
+      <div className="container-section relative z-10">
         <h2 className="section-title">Skills</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -88,25 +91,23 @@ interface SkillCardProps {
 
 function SkillCard({ title, icon, skills }: SkillCardProps) {
   return (
-    <Card className="shadow-sm">
-      <CardContent className="p-6">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="p-2 rounded-md bg-primary/10 text-primary">
+    <Card className="border-none shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+      <CardContent className="p-8">
+        <div className="flex items-center gap-3 mb-8">
+          <div className="p-3 rounded-md bg-primary/10 text-primary">
             {icon}
           </div>
           <h3 className="text-xl font-semibold">{title}</h3>
         </div>
         
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-3">
           {skills.map((skill) => (
-            <div key={skill.name} className="skill-badge-container">
-              <Badge
-                className={badgeVariants[skill.level] || ""}
-                key={skill.name}
-              >
-                {skill.name}
-              </Badge>
-            </div>
+            <Badge
+              key={skill.name}
+              className={`${badgeVariants[skill.level]} text-sm py-1.5 px-3 cursor-default`}
+            >
+              {skill.name}
+            </Badge>
           ))}
         </div>
       </CardContent>

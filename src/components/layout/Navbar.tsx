@@ -16,6 +16,7 @@ const navLinks = [
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
   
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +24,20 @@ export default function Navbar() {
       if (isScrolled !== scrolled) {
         setScrolled(isScrolled);
       }
+      
+      // Update active section based on scroll position
+      const sections = document.querySelectorAll("section[id]");
+      let currentSection = "home";
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionHeight = section.offsetHeight;
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+          currentSection = section.getAttribute("id") || "home";
+        }
+      });
+      
+      setActiveSection(currentSection);
     };
     
     window.addEventListener("scroll", handleScroll);
@@ -30,13 +45,19 @@ export default function Navbar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [scrolled]);
+  
+  const handleNavClick = (href: string) => {
+    setIsMenuOpen(false);
+    const targetId = href.replace("#", "");
+    setActiveSection(targetId);
+  };
 
   return (
     <header 
       className={cn(
         "fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300",
         scrolled 
-          ? "bg-white/90 dark:bg-gray-900/90 shadow-md backdrop-blur-sm py-3" 
+          ? "bg-background/95 border-b border-border shadow-sm backdrop-blur-sm py-3" 
           : "bg-transparent py-5"
       )}
     >
@@ -52,7 +73,11 @@ export default function Navbar() {
               <li key={link.name}>
                 <a 
                   href={link.href}
-                  className="px-4 py-2 rounded-md text-foreground/90 hover:text-primary hover:bg-primary/5 transition-colors"
+                  onClick={() => handleNavClick(link.href)}
+                  className={cn(
+                    "px-4 py-2 rounded-md text-foreground/80 hover:text-primary transition-colors",
+                    activeSection === link.href.replace("#", "") && "text-primary bg-primary/5 font-medium"
+                  )}
                 >
                   {link.name}
                 </a>
@@ -60,7 +85,7 @@ export default function Navbar() {
             ))}
           </ul>
           
-          <Button asChild className="ml-4 flex items-center gap-2">
+          <Button asChild variant="default" size="sm" className="ml-4 flex items-center gap-2">
             <a href="/resume.pdf" download>
               <Download className="h-4 w-4" />
               Resume
@@ -81,7 +106,7 @@ export default function Navbar() {
       {/* Mobile Navigation Menu */}
       <div 
         className={cn(
-          "fixed inset-0 top-[60px] bg-white dark:bg-gray-900 md:hidden z-40 transition-transform duration-300 ease-in-out",
+          "fixed inset-0 top-[60px] bg-background md:hidden z-40 transition-transform duration-300 ease-in-out border-t",
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
@@ -91,8 +116,11 @@ export default function Navbar() {
               <li key={link.name}>
                 <a 
                   href={link.href}
-                  className="block px-4 py-2 text-lg hover:text-primary transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={() => handleNavClick(link.href)}
+                  className={cn(
+                    "block px-4 py-2 text-lg hover:text-primary transition-colors rounded-md",
+                    activeSection === link.href.replace("#", "") && "text-primary bg-primary/5 font-medium"
+                  )}
                 >
                   {link.name}
                 </a>
