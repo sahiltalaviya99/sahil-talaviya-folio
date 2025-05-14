@@ -3,7 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowDown, Github, Linkedin, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { gradientText, splitText, TypewriterText, ShinyText } from "@/lib/animations";
+import { 
+  SplitText, 
+  GradientText, 
+  TypewriterText, 
+  ShinyText, 
+  SpotlightEffect,
+  MagnetEffect,
+  BlurText
+} from "@/lib/animations";
 
 export default function HeroSection() {
   return (
@@ -16,12 +24,12 @@ export default function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 space-y-6">
             <Badge className="px-3 py-1 bg-primary/10 text-primary hover:bg-primary/20 mb-4 border-none">
-              {splitText("Open to Work")}
+              <SplitText text="Open to Work" />
             </Badge>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
-              Hi, I'm {ShinyText({ children: "Sahil" })} – <span className="text-primary">
-                {gradientText("Frontend Developer")}
+              Hi, I'm <ShinyText>Sahil</ShinyText> – <span className="text-primary">
+                <GradientText text="Frontend Developer" />
               </span> & {" "}
               <TypewriterText 
                 text="Web Tester" 
@@ -31,30 +39,37 @@ export default function HeroSection() {
               />
             </h1>
             
-            <p className="text-xl text-muted-foreground mt-6 max-w-2xl">
-              Building responsive and interactive web experiences with a focus on clean code and intuitive user interfaces.
-            </p>
+            <BlurText 
+              text="Building responsive and interactive web experiences with a focus on clean code and intuitive user interfaces."
+              className="text-xl text-muted-foreground mt-6 max-w-2xl"
+              duration={1800}
+            />
             
             <div className="flex flex-wrap gap-4 mt-10">
-              <Button size="lg" className="rounded-full shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-105">
-                <a href="#contact" className="flex items-center gap-2">Contact Me</a>
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="rounded-full relative overflow-hidden group" 
-                asChild
-              >
-                <a 
-                  href="/resume.pdf" 
-                  download 
-                  className="flex items-center gap-2 z-10"
+              <MagnetEffect strength={15}>
+                <Button size="lg" className="rounded-full shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-105">
+                  <a href="#contact" className="flex items-center gap-2">Contact Me</a>
+                </Button>
+              </MagnetEffect>
+              
+              <SpotlightEffect>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="rounded-full relative overflow-hidden group" 
+                  asChild
                 >
-                  <Download className="h-4 w-4 transition-transform group-hover:scale-110" />
-                  <span className="relative z-10">View Resume</span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-                </a>
-              </Button>
+                  <a 
+                    href="/resume.pdf" 
+                    download 
+                    className="flex items-center gap-2 z-10"
+                  >
+                    <Download className="h-4 w-4 transition-transform group-hover:scale-110" />
+                    <span className="relative z-10">View Resume</span>
+                    <span className="absolute inset-0 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                  </a>
+                </Button>
+              </SpotlightEffect>
             </div>
             
             <div className="flex items-center gap-4 mt-8">
@@ -94,13 +109,13 @@ export default function HeroSection() {
               
               <div className="absolute -bottom-4 -right-4 bg-card shadow-lg rounded-full p-3 animate-bounce">
                 <div className="bg-primary rounded-full w-16 h-16 flex items-center justify-center text-primary-foreground text-sm font-medium">
-                  {splitText("Web Dev")}
+                  <SplitText text="Web Dev" />
                 </div>
               </div>
               
               <div className="absolute -top-4 -left-4 bg-card shadow-lg rounded-full p-3 animate-pulse">
                 <div className="bg-accent rounded-full w-16 h-16 flex items-center justify-center text-accent-foreground text-sm font-medium">
-                  {splitText("Tester")}
+                  <SplitText text="Tester" />
                 </div>
               </div>
             </div>
