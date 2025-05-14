@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowDown, Github, Linkedin, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { gradientText, splitText, TypewriterText, ShinyText } from "@/lib/animations";
 
 export default function HeroSection() {
   return (
@@ -15,11 +16,19 @@ export default function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 space-y-6">
             <Badge className="px-3 py-1 bg-primary/10 text-primary hover:bg-primary/20 mb-4 border-none">
-              Open to Work
+              {splitText("Open to Work")}
             </Badge>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
-              Hi, I'm Sahil – <span className="text-primary">Frontend Developer</span> & Web Tester
+              Hi, I'm {ShinyText({ children: "Sahil" })} – <span className="text-primary">
+                {gradientText("Frontend Developer")}
+              </span> & {" "}
+              <TypewriterText 
+                text="Web Tester" 
+                speed={150}
+                delay={1000}
+                className="text-accent"
+              />
             </h1>
             
             <p className="text-xl text-muted-foreground mt-6 max-w-2xl">
@@ -27,13 +36,23 @@ export default function HeroSection() {
             </p>
             
             <div className="flex flex-wrap gap-4 mt-10">
-              <Button size="lg" className="rounded-full shadow-lg shadow-primary/20">
+              <Button size="lg" className="rounded-full shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-105">
                 <a href="#contact" className="flex items-center gap-2">Contact Me</a>
               </Button>
-              <Button size="lg" variant="outline" className="rounded-full" asChild>
-                <a href="/resume.pdf" download className="flex items-center gap-2">
-                  <Download className="h-4 w-4" />
-                  View Resume
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="rounded-full relative overflow-hidden group" 
+                asChild
+              >
+                <a 
+                  href="/resume.pdf" 
+                  download 
+                  className="flex items-center gap-2 z-10"
+                >
+                  <Download className="h-4 w-4 transition-transform group-hover:scale-110" />
+                  <span className="relative z-10">View Resume</span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
                 </a>
               </Button>
             </div>
@@ -63,8 +82,8 @@ export default function HeroSection() {
           {/* Hero Image */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
             <div className="relative">
-              <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-gradient-to-br from-primary to-accent p-1 shadow-xl">
-                <div className="w-full h-full rounded-full bg-background flex items-center justify-center overflow-hidden">
+              <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-gradient-to-br from-primary to-accent p-1 shadow-xl animate-[spin_20s_linear_infinite]">
+                <div className="w-full h-full rounded-full bg-background flex items-center justify-center overflow-hidden animate-[spin_20s_linear_infinite_reverse]">
                   <img 
                     src="/placeholder.svg" 
                     alt="Sahil Talaviya" 
@@ -73,15 +92,15 @@ export default function HeroSection() {
                 </div>
               </div>
               
-              <div className="absolute -bottom-4 -right-4 bg-card shadow-lg rounded-full p-3">
+              <div className="absolute -bottom-4 -right-4 bg-card shadow-lg rounded-full p-3 animate-bounce">
                 <div className="bg-primary rounded-full w-16 h-16 flex items-center justify-center text-primary-foreground text-sm font-medium">
-                  Web Dev
+                  {splitText("Web Dev")}
                 </div>
               </div>
               
-              <div className="absolute -top-4 -left-4 bg-card shadow-lg rounded-full p-3">
+              <div className="absolute -top-4 -left-4 bg-card shadow-lg rounded-full p-3 animate-pulse">
                 <div className="bg-accent rounded-full w-16 h-16 flex items-center justify-center text-accent-foreground text-sm font-medium">
-                  Tester
+                  {splitText("Tester")}
                 </div>
               </div>
             </div>

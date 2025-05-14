@@ -7,6 +7,7 @@ import SkillsSection from "@/components/sections/SkillsSection";
 import ExperienceSection from "@/components/sections/ExperienceSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 import ContactSection from "@/components/sections/ContactSection";
+import { ScrollRevealText } from "@/lib/animations";
 
 const Index = () => {
   return (
@@ -14,11 +15,26 @@ const Index = () => {
       <Navbar />
       <main className="flex-grow">
         <HeroSection />
-        <AboutSection />
-        <SkillsSection />
-        <ExperienceSection />
-        <ProjectsSection />
-        <ContactSection />
+        
+        <ScrollRevealText threshold={0.2}>
+          <AboutSection />
+        </ScrollRevealText>
+        
+        <ScrollRevealText threshold={0.2} direction="right">
+          <SkillsSection />
+        </ScrollRevealText>
+        
+        <ScrollRevealText threshold={0.2} direction="left">
+          <ExperienceSection />
+        </ScrollRevealText>
+        
+        <ScrollRevealText threshold={0.2}>
+          <ProjectsSection />
+        </ScrollRevealText>
+        
+        <ScrollRevealText threshold={0.2} direction="up">
+          <ContactSection />
+        </ScrollRevealText>
       </main>
       <Footer />
     </div>
