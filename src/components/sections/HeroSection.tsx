@@ -102,9 +102,9 @@ export default function HeroSection() {
               <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-gradient-to-br from-primary to-accent p-1 shadow-xl animate-[spin_20s_linear_infinite]">
                 <div className="w-full h-full rounded-full bg-background flex items-center justify-center overflow-hidden animate-[spin_20s_linear_infinite_reverse]">
                   <img 
-                    src="/placeholder.svg"  // IN PUBLIC FOLDER 
+                    src="/hero-img.jpg"  // IN PUBLIC FOLDER 
                     alt="Sahil Talaviya" 
-                    className="w-full h-full object-cover"
+                    className="w-64px h-64 object-cover"
                   />
                 </div>
               </div>

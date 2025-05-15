@@ -27,15 +27,16 @@ export default function AboutSection() {
           
           <div className="lg:col-span-8 space-y-8">
             <h3 className="text-2xl md:text-3xl font-bold text-foreground">
-              Frontend Developer & Web Tester based in India
+              Frontend Developer 
+              {/* & Web Tester based in India */}
             </h3>
             
             <div className="text-muted-foreground space-y-4 text-lg">
               <p>
-                I'm Sahil Talaviya, a passionate frontend developer and web tester currently pursuing my B.Tech in Information Technology at GIT, graduating in 2025. With a keen eye for detail and a strong foundation in web technologies, I specialize in creating responsive and user-friendly interfaces.
+                I am Sahil Talaviya, a dedicated Frontend Developer currently pursuing a Bachelor of Engineering in Information Technology at GIT, with an expected graduation in 2025. I specialize in developing responsive, accessible, and user-centric web interfaces, emphasizing clean and efficient code.
               </p>
               <p>
-                My journey in web development started during my college years, and I've since honed my skills through various projects and internships. I enjoy solving complex problems through clean, efficient code and am constantly learning new technologies to stay updated in this fast-evolving field.
+                Since beginning my journey in web development during college, I have refined my skills through diverse projects and internships. I am committed to leveraging emerging technologies, including AI, to enhance development processes, with a long-term goal of becoming a proficient Full Stack Developer.
               </p>
             </div>
             
