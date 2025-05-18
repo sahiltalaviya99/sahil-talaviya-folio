@@ -24,72 +24,71 @@ interface Project {
 }
 
 const projects: Project[] = [
+  // {
+  //   id: 1,
+  //   title: "Portfolio Website",
+  //   description: "Personal portfolio showcasing skills and projects.",
+  //   image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
+  //   tags: ["React", "Tailwind CSS", "JavaScript"],
+  //   demoLink: "https://yourportfolio.com",
+  //   githubLink: "https://github.com/yourusername/portfolio",
+  //   detailedDescription:
+  //     "A responsive portfolio website highlighting my skills, projects, and experience, built with React.js and Tailwind CSS for a modern, accessible UI.",
+  //   features: [
+  //     "Fully responsive across all devices",
+  //     "Smooth animations and interactive UI",
+  //     "Seamless section navigation",
+  //   ],
+  // },
   {
-    id: 1,
-    title: "Portfolio Website",
-    description: "My personal portfolio website built with React.js.",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
-    tags: ["React", "Tailwind CSS", "JavaScript"],
-    demoLink: "https://yourportfolio.com",
-    githubLink: "https://github.com/yourusername/portfolio",
-    detailedDescription:
-      "A responsive personal portfolio website showcasing my skills, projects, and experience. Built using React.js and Tailwind CSS for modern UI design.",
-    features: [
-      "Responsive design for all device sizes",
-      "Interactive UI elements with smooth animations",
-      "Smooth scroll navigation between sections",
-    ],
-  },
-  
-  // Uncomment or add more projects here
-  {
-    id: 6,
+    id: 2,
     title: "ForkFleet - Food Delivery App",
-    description: "A modern food delivery web app built with React and Tailwind CSS.",
+    description: "A food delivery web app with intuitive browsing.",
     image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80",
     tags: ["React", "Vite", "Tailwind CSS", "Food Delivery"],
     demoLink: "https://peshphjexjg6k.mocha.app/",
     githubLink: undefined,
     detailedDescription:
-      "ForkFleet is a responsive food delivery web application that allows users to browse food menus, explore restaurants, and place online orders seamlessly. Built with React, Vite, and Tailwind CSS.",
+      "ForkFleet enables users to browse menus, explore restaurants, and place orders seamlessly, with a responsive UI built using React, Vite, and Tailwind CSS.",
     features: [
-      "Clean and user-friendly UI for food browsing",
+      "User-friendly menu browsing",
       "Responsive layout for all devices",
-      "Interactive restaurant and menu listings",
-      "Order placement and checkout workflow",
+      "Interactive restaurant listings",
+      "Streamlined order and checkout flow",
     ],
   },
   {
-    id: 7,
+    id: 3,
     title: "Fresh Harvest - Grocery Store",
-    description: "E-commerce site for selling dairy products, vegetables, biscuits, and more.",
+    description: "E-commerce platform for fresh groceries and essentials.",
     image: "https://img.freepik.com/free-vector/social-media-marketing-mobile-phone-concept_23-2148431747.jpg?t=st=1747324600~exp=1747328200~hmac=fb7193d9987840ebfb2d58ac8ea920e03b8a469bc74dba860435ceca29ee3474&w=826",
     tags: ["React", "Vite", "Tailwind CSS", "E-commerce"],
     demoLink: "https://your-fresh-harvest-site.com",
     githubLink: "https://github.com/yourusername/fresh-harvest-frontend",
     detailedDescription:
-      "Fresh Harvest is an online store for fresh groceries including dairy, vegetables, biscuits, and other daily essentials. It provides a smooth shopping experience with categorized product listings and responsive UI.",
+      "Fresh Harvest offers a seamless shopping experience for groceries like dairy, vegetables, and essentials, featuring a responsive UI and categorized product listings.",
     features: [
-      "Dynamic product listings for various categories",
-      "Responsive grid layout for all screen sizes",
+      "Dynamic product categorization",
+      "Responsive grid layout",
       "Shopping cart and quantity management",
       "Modern UI with React and Tailwind CSS",
     ],
-  },{
-    id: 2,
+  },
+  {
+    id: 4,
     title: "vDoctor Testing Report",
-    description: "Comprehensive testing report for a telehealth application.",
+    description: "Detailed testing report for a telehealth application.",
     image: "https://img.freepik.com/free-photo/young-handsome-physician-medical-robe-with-stethoscope_1303-17818.jpg?semt=ais_hybrid&w=740",
     tags: ["QA Testing", "Documentation", "Healthcare"],
     demoLink: undefined,
     githubLink: undefined,
     detailedDescription:
-      "Performed comprehensive testing for a telehealth application named vDoctor. Created detailed reports on UI/UX issues, functional bugs, and performance bottlenecks.",
+      "Comprehensive testing for the vDoctor telehealth app, including detailed reports on UI/UX, functionality, and performance issues.",
     features: [
-      "User experience evaluation",
+      "In-depth UI/UX evaluation",
       "Cross-browser compatibility testing",
-      "Performance metrics analysis",
-      "Detailed bug reporting with screenshots",
+      "Performance analysis",
+      "Detailed bug reports with visuals",
     ],
   },
 ];
@@ -98,11 +97,23 @@ export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section id="projects" className="py-20">
-      <div className="container-section">
-        <h2 className="section-title">Projects</h2>
+    <section
+      id="projects"
+      className="relative py-16 md:py-20 lg:py-24 bg-background"
+      aria-labelledby="projects-title"
+    >
+      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-accent/5 rounded-full blur-3xl"></div>
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        {/* <h2
+          id="projects-title"
+          className="text-3xl md:text-4xl font-bold text-foreground text-center mb-12 lg:text-left"
+        >
+          Projects
+        </h2> */}
+        <h2 className="section-title"> Projects </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {projects.map((project) => (
             <ProjectCard
               key={project.id}
@@ -113,7 +124,6 @@ export default function ProjectsSection() {
         </div>
       </div>
 
-      {/* Project Details Dialog */}
       <ProjectDetailsDialog
         project={selectedProject}
         open={!!selectedProject}
@@ -130,64 +140,78 @@ interface ProjectCardProps {
 
 function ProjectCard({ project, onViewDetails }: ProjectCardProps) {
   return (
-    <Card className="overflow-hidden group shadow-sm hover:shadow-md transition-all">
-      <div className="h-48 overflow-hidden bg-secondary">
+    <Card className="overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 rounded-xl bg-background flex flex-col">
+      <div className="relative h-48 sm:h-56 overflow-hidden">
         <img
           src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+          alt={`${project.title} screenshot`}
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           loading="lazy"
         />
       </div>
 
       <CardHeader className="pb-2">
-        <h3 className="text-xl font-semibold">{project.title}</h3>
+        <h3 className="text-lg sm:text-xl font-semibold text-foreground">
+          {project.title}
+        </h3>
       </CardHeader>
 
-      <CardContent className="pb-0">
-        <p className="text-muted-foreground mb-4">{project.description}</p>
-
-        <div className="flex flex-wrap gap-1 mb-4">
+      <CardContent className="flex-grow pb-4">
+        <p className="text-sm sm:text-base text-muted-foreground mb-4">
+          {project.description}
+        </p>
+        <div className="flex flex-wrap gap-2">
           {project.tags.map((tag) => (
-            <Badge key={tag} variant="secondary" className="text-xs">
+            <Badge
+              key={tag}
+              variant="secondary"
+              className="text-xs sm:text-sm"
+            >
               {tag}
             </Badge>
           ))}
         </div>
       </CardContent>
 
-      <CardFooter className="flex justify-between pt-4">
-        <Button variant="outline" onClick={onViewDetails}>
+      <CardFooter className="flex justify-between items-center pt-4">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={onViewDetails}
+          aria-label={`View details for ${project.title}`}
+        >
           View Details
         </Button>
-
-        <div className="flex gap-2">
-          {/* {project.demoLink && (
-            <Button size="icon" variant="ghost" asChild>
-              <a
-                href={project.demoLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="View live demo"
-              >
+        {/* <div className="flex gap-2">
+          {project.demoLink && (
+            <Button
+              size="icon"
+              variant="ghost"
+              asChild
+              aria-label={`View live demo of ${project.title}`}
+            >
+              <a href={project.demoLink} target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="h-4 w-4" />
               </a>
             </Button>
           )}
-
           {project.githubLink && (
-            <Button size="icon" variant="ghost" asChild>
+            <Button
+              size="icon"
+              variant="ghost"
+              asChild
+              aria-label={`View source code for ${project.title}`}
+            >
               <a
                 href={project.githubLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="View source code"
               >
                 <Github className="h-4 w-4" />
               </a>
             </Button>
-          )} */}
-        </div>
+          )}
+        </div> */}
       </CardFooter>
     </Card>
   );
@@ -208,13 +232,15 @@ function ProjectDetailsDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-3xl">
+      <DialogContent className="max-w-[95vw] sm:max-w-3xl rounded-lg p-4 sm:p-6">
         <DialogHeader>
-          <DialogTitle>{project.title}</DialogTitle>
+          <DialogTitle className="text-xl sm:text-2xl">
+            {project.title}
+          </DialogTitle>
           <DialogDescription>
             <div className="flex flex-wrap gap-2 mt-2">
               {project.tags.map((tag) => (
-                <Badge key={tag} variant="secondary">
+                <Badge key={tag} variant="secondary" className="text-xs sm:text-sm">
                   {tag}
                 </Badge>
               ))}
@@ -222,33 +248,39 @@ function ProjectDetailsDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-4">
-          <div className="h-64 overflow-hidden rounded-md bg-secondary">
+        <div className="space-y-6">
+          <div className="h-48 sm:h-64 overflow-hidden rounded-lg bg-secondary">
             <img
               src={project.image}
-              alt={project.title}
+              alt={`${project.title} screenshot`}
               className="w-full h-full object-cover"
               loading="lazy"
             />
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-2">About this project</h4>
-            <p className="text-muted-foreground">{project.detailedDescription}</p>
+            <h4 className="text-lg font-semibold mb-2">About This Project</h4>
+            <p className="text-sm sm:text-base text-muted-foreground">
+              {project.detailedDescription}
+            </p>
           </div>
 
           <div>
             <h4 className="text-lg font-semibold mb-2">Features</h4>
-            <ul className="list-disc pl-5 text-muted-foreground">
+            <ul className="list-disc pl-5 text-sm sm:text-base text-muted-foreground space-y-2">
               {project.features.map((feature, index) => (
                 <li key={index}>{feature}</li>
               ))}
             </ul>
           </div>
 
-          <div className="flex flex-wrap gap-4 pt-4">
-            {/* {project.demoLink && (
-              <Button asChild>
+          {/* <div className="flex flex-wrap gap-4 pt-4">
+            {project.demoLink && (
+              <Button
+                asChild
+                size="sm"
+                aria-label={`View live demo of ${project.title}`}
+              >
                 <a
                   href={project.demoLink}
                   target="_blank"
@@ -260,9 +292,13 @@ function ProjectDetailsDialog({
                 </a>
               </Button>
             )}
-
             {project.githubLink && (
-              <Button variant="outline" asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                asChild
+                aria-label={`View source code for ${project.title}`}
+              >
                 <a
                   href={project.githubLink}
                   target="_blank"
@@ -273,8 +309,8 @@ function ProjectDetailsDialog({
                   View Source
                 </a>
               </Button>
-            )} */}
-          </div>
+            )}
+          </div> */}
         </div>
       </DialogContent>
     </Dialog>
