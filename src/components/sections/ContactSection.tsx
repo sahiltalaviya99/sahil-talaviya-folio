@@ -7,7 +7,7 @@ export default function ContactSection() {
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-1/4 h-1/4 bg-primary/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-accent/5 rounded-full blur-3xl"></div>
-
+       
       <div className="container-section relative z-10">
         <h2 className="section-title">Contact Me</h2>
 
