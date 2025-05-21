@@ -30,7 +30,7 @@ const projects: Project[] = [
     description: "A food delivery web app with intuitive browsing.",
     image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80",
     tags: ["React", "Vite", "Tailwind CSS", "Food Delivery"],
-    demoLink: "https://peshphjexjg6k.mocha.app/",
+    demoLink:undefined,
     githubLink: undefined,
     detailedDescription:
       "ForkFleet enables users to browse menus, explore restaurants, and place orders seamlessly, with a responsive UI built using React, Vite, and Tailwind CSS.",
@@ -47,8 +47,8 @@ const projects: Project[] = [
     description: "E-commerce platform for fresh groceries and essentials.",
     image: "https://img.freepik.com/free-vector/social-media-marketing-mobile-phone-concept_23-2148431747.jpg?t=st=1747324600~exp=1747328200~hmac=fb7193d9987840ebfb2d58ac8ea920e03b8a469bc74dba860435ceca29ee3474&w=826",
     tags: ["React", "Vite", "Tailwind CSS", "E-commerce"],
-    demoLink: "https://your-fresh-harvest-site.com",
-    githubLink: "https://github.com/yourusername/fresh-harvest-frontend",
+    demoLink: undefined,
+    githubLink: undefined,
     detailedDescription:
       "Fresh Harvest offers a seamless shopping experience for groceries like dairy, vegetables, and essentials, featuring a responsive UI and categorized product listings.",
     features: [
