@@ -24,22 +24,6 @@ interface Project {
 }
 
 const projects: Project[] = [
-  // {
-  //   id: 1,
-  //   title: "Portfolio Website",
-  //   description: "Personal portfolio showcasing skills and projects.",
-  //   image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
-  //   tags: ["React", "Tailwind CSS", "JavaScript"],
-  //   demoLink: "https://yourportfolio.com",
-  //   githubLink: "https://github.com/yourusername/portfolio",
-  //   detailedDescription:
-  //     "A responsive portfolio website highlighting my skills, projects, and experience, built with React.js and Tailwind CSS for a modern, accessible UI.",
-  //   features: [
-  //     "Fully responsive across all devices",
-  //     "Smooth animations and interactive UI",
-  //     "Seamless section navigation",
-  //   ],
-  // },
   {
     id: 2,
     title: "ForkFleet - Food Delivery App",
@@ -99,21 +83,19 @@ export default function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="relative py-16 md:py-20 lg:py-24 bg-background"
+      className="relative py-12 sm:py-16 md:py-20 lg:py-24 bg-background"
       aria-labelledby="projects-title"
     >
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-accent/5 rounded-full blur-3xl"></div>
+      {/* Responsive background element */}
+      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 md:w-1/2 md:h-1/2 bg-accent/5 rounded-full blur-3xl opacity-70"></div>
       
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        {/* <h2
-          id="projects-title"
-          className="text-3xl md:text-4xl font-bold text-foreground text-center mb-12 lg:text-left"
-        >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
+        <h2 className="section-title text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-10 md:mb-12">
           Projects
-        </h2> */}
-        <h2 className="section-title"> Projects </h2>
+        </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        {/* Responsive grid with better small-screen layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {projects.map((project) => (
             <ProjectCard
               key={project.id}
@@ -140,32 +122,32 @@ interface ProjectCardProps {
 
 function ProjectCard({ project, onViewDetails }: ProjectCardProps) {
   return (
-    <Card className="overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 rounded-xl bg-background flex flex-col">
-      <div className="relative h-48 sm:h-56 overflow-hidden">
+    <Card className="overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 rounded-xl bg-background flex flex-col h-full transform hover:-translate-y-1">
+      <div className="relative h-40 xs:h-44 sm:h-48 md:h-52 lg:h-56 overflow-hidden">
         <img
           src={project.image}
           alt={`${project.title} screenshot`}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
           loading="lazy"
         />
       </div>
 
-      <CardHeader className="pb-2">
-        <h3 className="text-lg sm:text-xl font-semibold text-foreground">
+      <CardHeader className="pb-1 sm:pb-2 pt-4 sm:pt-5">
+        <h3 className="text-base sm:text-lg md:text-xl font-semibold text-foreground line-clamp-2">
           {project.title}
         </h3>
       </CardHeader>
 
-      <CardContent className="flex-grow pb-4">
-        <p className="text-sm sm:text-base text-muted-foreground mb-4">
+      <CardContent className="flex-grow pb-2 sm:pb-3">
+        <p className="text-xs sm:text-sm md:text-base text-muted-foreground mb-3 line-clamp-3">
           {project.description}
         </p>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1 sm:gap-2">
           {project.tags.map((tag) => (
             <Badge
               key={tag}
               variant="secondary"
-              className="text-xs sm:text-sm"
+              className="text-xs px-2 py-0.5"
             >
               {tag}
             </Badge>
@@ -173,25 +155,28 @@ function ProjectCard({ project, onViewDetails }: ProjectCardProps) {
         </div>
       </CardContent>
 
-      <CardFooter className="flex justify-between items-center pt-4">
+      <CardFooter className="flex justify-between items-center pt-2 sm:pt-3 pb-4">
         <Button
           variant="outline"
           size="sm"
           onClick={onViewDetails}
           aria-label={`View details for ${project.title}`}
+          className="text-xs sm:text-sm w-full sm:w-auto"
         >
           View Details
         </Button>
-        {/* <div className="flex gap-2">
+        
+        <div className="flex gap-1 sm:gap-2">
           {project.demoLink && (
             <Button
               size="icon"
               variant="ghost"
               asChild
+              className="h-8 w-8"
               aria-label={`View live demo of ${project.title}`}
             >
               <a href={project.demoLink} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="h-4 w-4" />
+                <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
               </a>
             </Button>
           )}
@@ -200,6 +185,7 @@ function ProjectCard({ project, onViewDetails }: ProjectCardProps) {
               size="icon"
               variant="ghost"
               asChild
+              className="h-8 w-8"
               aria-label={`View source code for ${project.title}`}
             >
               <a
@@ -207,11 +193,11 @@ function ProjectCard({ project, onViewDetails }: ProjectCardProps) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Github className="h-4 w-4" />
+                <Github className="h-3 w-3 sm:h-4 sm:w-4" />
               </a>
             </Button>
           )}
-        </div> */}
+        </div>
       </CardFooter>
     </Card>
   );
@@ -232,13 +218,13 @@ function ProjectDetailsDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[95vw] sm:max-w-3xl rounded-lg p-4 sm:p-6">
-        <DialogHeader>
-          <DialogTitle className="text-xl sm:text-2xl">
+      <DialogContent className="max-w-[95vw] sm:max-w-lg md:max-w-2xl lg:max-w-3xl rounded-lg p-3 sm:p-4 md:p-6 overflow-y-auto max-h-[90vh]">
+        <DialogHeader className="space-y-1 sm:space-y-2">
+          <DialogTitle className="text-lg sm:text-xl md:text-2xl font-bold">
             {project.title}
           </DialogTitle>
           <DialogDescription>
-            <div className="flex flex-wrap gap-2 mt-2">
+            <div className="flex flex-wrap gap-1 sm:gap-2 mt-1 sm:mt-2">
               {project.tags.map((tag) => (
                 <Badge key={tag} variant="secondary" className="text-xs sm:text-sm">
                   {tag}
@@ -248,8 +234,8 @@ function ProjectDetailsDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-6">
-          <div className="h-48 sm:h-64 overflow-hidden rounded-lg bg-secondary">
+        <div className="space-y-4 sm:space-y-6">
+          <div className="h-40 sm:h-48 md:h-56 lg:h-64 overflow-hidden rounded-lg bg-secondary">
             <img
               src={project.image}
               alt={`${project.title} screenshot`}
@@ -259,35 +245,36 @@ function ProjectDetailsDialog({
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-2">About This Project</h4>
-            <p className="text-sm sm:text-base text-muted-foreground">
+            <h4 className="text-base sm:text-lg font-semibold mb-1 sm:mb-2">About This Project</h4>
+            <p className="text-xs sm:text-sm md:text-base text-muted-foreground">
               {project.detailedDescription}
             </p>
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-2">Features</h4>
-            <ul className="list-disc pl-5 text-sm sm:text-base text-muted-foreground space-y-2">
+            <h4 className="text-base sm:text-lg font-semibold mb-1 sm:mb-2">Features</h4>
+            <ul className="list-disc pl-4 sm:pl-5 text-xs sm:text-sm md:text-base text-muted-foreground space-y-1 sm:space-y-2">
               {project.features.map((feature, index) => (
                 <li key={index}>{feature}</li>
               ))}
             </ul>
           </div>
 
-          {/* <div className="flex flex-wrap gap-4 pt-4">
+          <div className="flex flex-wrap gap-2 sm:gap-4 pt-2 sm:pt-4">
             {project.demoLink && (
               <Button
                 asChild
                 size="sm"
+                className="text-xs sm:text-sm"
                 aria-label={`View live demo of ${project.title}`}
               >
                 <a
                   href={project.demoLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-1 sm:gap-2"
                 >
-                  <ExternalLink className="h-4 w-4" />
+                  <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
                   View Demo
                 </a>
               </Button>
@@ -297,20 +284,21 @@ function ProjectDetailsDialog({
                 variant="outline"
                 size="sm"
                 asChild
+                className="text-xs sm:text-sm"
                 aria-label={`View source code for ${project.title}`}
               >
                 <a
                   href={project.githubLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-1 sm:gap-2"
                 >
-                  <Github className="h-4 w-4" />
+                  <Github className="h-3 w-3 sm:h-4 sm:w-4" />
                   View Source
                 </a>
               </Button>
             )}
-          </div> */}
+          </div>
         </div>
       </DialogContent>
     </Dialog>
